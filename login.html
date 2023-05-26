@@ -9,10 +9,10 @@
 
 
 <div class="login-container">
-  <h2>登录</h2>
+  <h2>Login</h2>
   <form id="login-form">
-    <input type="text" id="username" class="form-control" placeholder="用户名" required />
-    <input type="password" id="password" class="form-control" placeholder="密码" required />
+    <input type="text" id="username" class="form-control" placeholder="username" required />
+    <input type="password" id="password" class="form-control" placeholder="password" required />
     <button type="submit" class="submit-button">Login</button>
     <button type="button" class="register-button" onclick="location.href='注册页面URL'">Register</button>
   </form>
@@ -20,12 +20,12 @@
 
 <script>
   document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // 阻止表单默认的提交行为
+    event.preventDefault();
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
     console.log('Username: ', username);
     console.log('Password: ', password);
-    // 在这里，你可以添加更多的代码来处理登录逻辑
+
   });
 </script>
 
