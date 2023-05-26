@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <title>Register</title>
+</head>
+<body>
+
+<div class="centered-content">
+  <div class="login-container">
+    <h1 id="register-name">Leaf</h1>
+    <h2>Register</h2>
+    <form id="register-form">
+      <input type="text" id="username" class="form-control" placeholder="Username" required />
+      <input type="email" id="email" class="form-control" placeholder="Email" required />
+      <input type="password" id="password" class="form-control" placeholder="Password" required />
+      <input type="password" id="confirm-password" class="form-control" placeholder="Confirm Password" required />
+      <button type="submit" class="submit-button">Register</button>
+      <button type="button" class="register-button" onclick="location.href='login.html'">Login</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('register-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var username = document.getElementById('username').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirm-password').value;
+    console.log('Username: ', username);
+    console.log('Email: ', email);
+    console.log('Password: ', password);
+    console.log('Confirm Password: ', confirmPassword);
+  });
+</script>
+
+</body>
+</html>

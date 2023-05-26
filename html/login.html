@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <title>Login</title>
+</head>
+<body>
+
+<div class="centered-content">
+  <div class="login-container">
+    <h1 id="login-name">Leaf</h1>
+    <h2>Login</h2>
+    <form id="login-form">
+      <input type="text" id="username" class="form-control" placeholder="username" required />
+      <input type="password" id="password" class="form-control" placeholder="password" required />
+      <button type="submit" class="submit-button">Login</button>
+      <button type="button" class="register-button" onclick="location.href='register.html'">Register</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    console.log('Username: ', username);
+    console.log('Password: ', password);
+  });
+</script>
+
+</body>
+</html>

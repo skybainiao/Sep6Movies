@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  display: flex;  /* 新增，使body具有flex属性 */
+  justify-content: center;  /* 新增，使body的子元素在垂直方向上居中 */
+  align-items: center;  /* 新增，使body的子元素在水平方向上居中 */
+  height: 75vh;  /* 新增，使body的高度为视窗的高度 */
+}
+.centered-content {  /* 新增，用于包含所有的内容并使其居中 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-container {
+  max-width: 400px;
+  text-align: center;
+}
+#login-name {
+  font-family: 'Pacifico', cursive;
+  font-size:6em;
+  color: #007BFF;
+}
+
+#register-name {
+  font-family: 'Pacifico', cursive;
+  font-size:6em;
+  color: #007BFF;
+}
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+.submit-button, .register-button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.submit-button {
+  background-color: #007BFF;
+  color: white;
+}
+.submit-button:hover {
+  background-color: #0056b3;
+}
+.register-button {
+  background-color: #6c757d;
+  color: white;
+}
+.register-button:hover {
+  background-color: #5a6268;
+}
