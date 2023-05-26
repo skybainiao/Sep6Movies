@@ -21,12 +21,14 @@ body {
   font-family: 'Pacifico', cursive;
   font-size:6em;
   color: #007BFF;
+  text-decoration: none;
 }
 
 #register-name {
   font-family: 'Pacifico', cursive;
   font-size:6em;
   color: #007BFF;
+  text-decoration: none;
 }
 .login-container h2 {
   text-align: center;
