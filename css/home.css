@@ -79,31 +79,28 @@ nav ul li a {
 #search button:hover {
   background-color: #0056b3;
 }
-
 main {
-  width: 80%;
-  margin: auto;
-  padding: 40px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 section {
-  margin-bottom: 30px;
+  width: 80%;
 }
 
-section h1 {
-  color: #076668;
-  margin-bottom: 10px;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* This creates a 3-column grid */
+  grid-template-rows: repeat(5, auto);  /* This creates 5 rows */
+  gap: 20px;  /* This sets the gap between the grid items */
 }
 
-section ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
+.grid-item {
+  width: 100%;
 }
 
-section ul li a {
-  color: #333;
-  text-decoration: none;
+.cover-wp img {
+  width: 100%;
+  height: auto;
 }
