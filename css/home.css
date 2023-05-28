@@ -79,6 +79,9 @@ nav ul li a {
 #search button:hover {
   background-color: #0056b3;
 }
+
+
+
 main {
   width: 100%;
   display: flex;
@@ -97,10 +100,10 @@ section {
 }
 
 .grid-item {
-  width: 100%;
+  width: 90%;
 }
 
 .cover-wp img {
-  width: 100%;
+  width: 90%;
   height: auto;
 }
