@@ -28,7 +28,7 @@ function changeStatus(){
 
 function checkProfile(){
   if (username===null){
-    window.location.href = "html/Login.html";
+    window.location.href = "html/login.html";
   }
   else {
     window.location.href = "html/profile.html";
