@@ -12,6 +12,13 @@ var directorJson = '';
 const commentUri = 'http://sep-db-386814.ew.r.appspot.com/comment/get/movie?mId=';
 var commentJson = '';
 
+var commentContext = '';
+var rating = 0;
+var userId = 0;
+var username = '';
+var AddCommentUri = 'http://sep-db-386814.ew.r.appspot.com/comment/add/one';
+
+
 function GetMovieInfo(){
   GetId();
   const xhr = new XMLHttpRequest();
@@ -126,6 +133,36 @@ function GetComment()
       console.log(xhr.responseText)
       var  data = xhr.responseText;
       commentJson = JSON.parse(data);
+    }
+  }
+}
+
+function AddComment()//调用前设置userid username
+{
+  const Json = {
+    "commentContext": commentContext,
+    "rating": rating,
+    "user": {
+      "userId": userId,
+      "username": username
+    },
+    "movie": {
+      "id": movieId,
+      "title": detailedData.title,
+      "year": detailedData.year
+    }
+  }
+
+  xhr.open('POST', AddCommentUri, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send(JSON.stringify(Json))
+  xhr.onreadystatechange = () => {
+    //获取响应内容
+    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+      console.log(xhr.responseText)
+
     }
   }
 }
