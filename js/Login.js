@@ -25,15 +25,14 @@ function Login(){
       else
       {
         alert("login successful")
+        localStorage.setItem('username', username);
         window.location.href = "../index.html";
       }
     }
   }
-
-
-
-
 }
+
+
 document.getElementById('login-form').addEventListener('submit', function(event) {
   Login();
 })

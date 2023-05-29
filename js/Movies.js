@@ -10,6 +10,18 @@ const searchUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getByIdTitle?page
 var searchTitle = '';
 
 //给index用的
+let user = document.getElementById('lg');
+let username = localStorage.getItem('username');
+
+
+function changeStatus(){
+  user.innerHTML=username;
+}
+
+
+
+
+
 let imgs = [];
 let names = [];
 let times = [];
@@ -28,7 +40,7 @@ for (let i = 1; i <= 12; i++) {
 }
 
 window.onload=function (){
-  console.log()
+  changeStatus();
   GetMoviesForIndex();
 }
 
