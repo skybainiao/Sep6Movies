@@ -2,6 +2,24 @@
 var pageSize = 12; //每页电影数
 const uri = 'http://sep-db-386814.ew.r.appspot.com/movie/getAll?pageNum=';
 
+//给index用的
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function GetMovies(){
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `${uri}${pageNum}&pageSize=${pageSize}`, true)
