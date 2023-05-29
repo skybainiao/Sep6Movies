@@ -23,7 +23,10 @@ let username = localStorage.getItem('username');
 
 
 function changeStatus(){
-  user.innerHTML=username;
+  if (username!==null){
+    user.innerHTML=username;
+  }
+
 }
 
 function checkProfile(){
