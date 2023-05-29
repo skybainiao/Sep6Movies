@@ -1,6 +1,5 @@
 window.onload=function (){
   changeStatus();
-  GetMoviesForIndex();
 }
 
 //给index用的

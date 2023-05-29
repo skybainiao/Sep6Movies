@@ -162,7 +162,7 @@ function AddComment()//调用前设置userid username
   xhr.send(JSON.stringify(Json))
   xhr.onreadystatechange = () => {
     //获取响应内容
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
 
     }
