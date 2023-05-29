@@ -78,7 +78,8 @@ function GetMoviesForIndex(){
 
         //rating part
         movieId = json.list[i].id;
-        GetRatings(); //ratingJson包含评分信息
+        GetRating(); //ratingJson包含评分信息
+        GetImage();
       }
     }
   }
