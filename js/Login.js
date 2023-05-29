@@ -1,13 +1,13 @@
 ﻿var username = "";
 var password = "";
-const uri = 'http://sep-db-386814.ew.r.appspot.com/user/getUser?id=0&username=';
+const uri = 'http://sep-db-386814.ew.r.appspot.com/user/login?username=';
 
 function Login(){
   username = document.getElementById("username").value;
   password = document.getElementById("password").value;
 
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', `${uri}${username}`, true)
+  xhr.open('GET', `${uri}${username}&password=${password}`, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.setRequestHeader('Accept', 'application/json')
   xhr.send()
@@ -18,15 +18,10 @@ function Login(){
       var  data = xhr.responseText;
       var json=JSON.parse(data);
 
-      if (json.password.toString() != password)
+      alert(json);
+      if (json.toString() == 'Login success')
       {
-        alert("invalid account")
-      }
-      else
-      {
-        alert("login successful")
-        localStorage.setItem('username', username);
-        window.location.href = "../index.html";
+        window.location.href = "../index.html?username=" + username;
       }
     }
   }
