@@ -59,6 +59,31 @@ for (let i = 1; i <= 12; i++) {
   ratings.push(rating);
 }
 
+function GetMoviesForIndex(){
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `${uri}${pageNum}&pageSize=${pageSize}`, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send()
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+      console.log(xhr.responseText)
+      var  data = xhr.responseText;
+      var json=JSON.parse(data); //json格式电影信息
+
+      for (let i = 0; i < 12; i++) {
+        names[i].innerHTML=json.list[i].title;
+        times[i].innerHTML="Opened "+json.list[i].year;
+
+        //rating part
+        movieId = json.list[i].id;
+        GetRatings(); //ratingJson包含评分信息
+      }
+    }
+  }
+}
+
 function GetMovies(){
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `${uri}${pageNum}&pageSize=${pageSize}`, true)
