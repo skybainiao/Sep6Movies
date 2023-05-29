@@ -21,6 +21,7 @@ function Register() {
     if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       alert("Register successful")
+      window.location.href = "../html/login.html";
     }
   }
 
