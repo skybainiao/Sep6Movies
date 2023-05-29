@@ -2,19 +2,18 @@
 var pageSize = 12; //每页电影数
 const uri = 'http://sep-db-386814.ew.r.appspot.com/movie/getAll?pageNum=';
 var clickedId = 0;
-var movieId = 0;
 const ratingUri = 'http://sep-db-386814.ew.r.appspot.com/ratings/getRating?movieId=';
 var ratingJson = '';
 const searchUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getByIdTitle?pageNum=1&pageSize=12&id=0&title=';
 var searchTitle = '';
 const imageUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getImage?id=00';
-var imageJson = '';
+
 
 
 
 window.onload=function (){
   changeStatus();
-  GetMoviesForIndex();
+  GetMovies();
 }
 
 //给index用的
@@ -40,50 +39,26 @@ function checkProfile(){
 
 }
 
-
-
 let imgs = [];
 let names = [];
 let times = [];
-let ratings = [];
+let ratingsList = [];
+let items = [];
 
 for (let i = 1; i <= 12; i++) {
   let img = document.getElementById('img' + i);
   let name = document.getElementById('s' + i);
   let time = document.getElementById('time' + i);
   let rating = document.getElementById('rating' + i);
+  let item = document.getElementById('item' + i);
 
   imgs.push(img);
   names.push(name);
   times.push(time);
-  ratings.push(rating);
+  ratingsList.push(rating);
+  items.push(item);
 }
 
-function GetMoviesForIndex(){
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', `${uri}${pageNum}&pageSize=${pageSize}`, true)
-  xhr.setRequestHeader('Content-Type', 'application/json')
-  xhr.setRequestHeader('Accept', 'application/json')
-
-  xhr.send()
-  xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
-      console.log(xhr.responseText)
-      var  data = xhr.responseText;
-      var json=JSON.parse(data); //json格式电影信息
-
-      for (let i = 0; i < 12; i++) {
-        names[i].innerHTML=json.list[i].title;
-        times[i].innerHTML="Opened "+json.list[i].year;
-
-        //rating part
-        movieId = json.list[i].id;
-        GetRating(); //ratingJson包含评分信息
-        GetImage();
-      }
-    }
-  }
-}
 
 function GetMovies(){
   const xhr = new XMLHttpRequest();
@@ -93,12 +68,59 @@ function GetMovies(){
 
   xhr.send()
   xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       var  data = xhr.responseText;
       var json=JSON.parse(data); //json格式电影信息
+
+      for (let i = 0; i < 12; i++) {
+        names[i].innerHTML=json.list[i].title;
+        times[i].innerHTML="Opened "+json.list[i].year;
+        GetRating(json.list[i].id,i);
+        GetImage(json.list[i].id,i);
+      }
     }
   }
+
+  function GetRating(movieId,i)
+  {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `${ratingUri}${movieId}`, true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.setRequestHeader('Accept', 'application/json')
+
+    xhr.send()
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
+        console.log(xhr.responseText)
+        var  data = xhr.responseText;
+
+        ratingJson = JSON.parse(data);
+        ratingsList[i].innerHTML="Rating: "+ratingJson.ratings;
+      }
+    }
+  }
+
+
+  function GetImage(movieId,i)
+  {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `${imageUri}${movieId}`, true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.setRequestHeader('Accept', 'application/json')
+
+    xhr.send()
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
+        console.log(xhr.responseText)
+        var data = xhr.responseText;
+
+        imgs[i].src=data;
+      }
+    }
+  }
+
+
 
   window.onclick = function (e) {
     var element = document.elementFromPoint(e.clientX,e.clientY);
@@ -118,10 +140,12 @@ function GetMovies(){
 
     xhr.send()
     xhr.onreadystatechange = () => {
-      if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+      if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
         console.log(xhr.responseText)
         var data = xhr.responseText;
         var detailedData = JSON.parse(data); //id,title,year
+
+
 
         const xhr = new XMLHttpRequest();
         xhr.open('GET', `${actorsUri}${detailedData.title}&pageNum=1&pageSize=100`, true)
@@ -130,7 +154,7 @@ function GetMovies(){
 
         xhr.send()
         xhr.onreadystatechange = () => {
-          if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+          if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
             console.log(xhr.responseText)
             var data = xhr.responseText;
             var actorsData = JSON.parse(data); //actors info
@@ -142,39 +166,9 @@ function GetMovies(){
   }
 }
 
-function GetRating()
-{
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', `${ratingUri}${movieId}`, true)
-  xhr.setRequestHeader('Content-Type', 'application/json')
-  xhr.setRequestHeader('Accept', 'application/json')
 
-  xhr.send()
-  xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
-      console.log(xhr.responseText)
-      var  data = xhr.responseText;
-      ratingJson = JSON.parse(data);
-    }
-  }
-}
 
-function GetImage()
-{
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', `${imageUri}${movieId}`, true)
-  xhr.setRequestHeader('Content-Type', 'application/json')
-  xhr.setRequestHeader('Accept', 'application/json')
 
-  xhr.send()
-  xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
-      console.log(xhr.responseText)
-      var  data = xhr.responseText;
-      imageJson = JSON.parse(data);
-    }
-  }
-}
 
 function Search() //调用前更改searchTitle参数
 {
@@ -185,7 +179,7 @@ function Search() //调用前更改searchTitle参数
 
   xhr.send()
   xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4 && /^20\d$/.test(xhr.status)) {
+    if (xhr.readyState === 4 && /^20\d$/.test(xhr.status)) {
       console.log(xhr.responseText)
       var data = xhr.responseText;
       var json = JSON.parse(data); //输出

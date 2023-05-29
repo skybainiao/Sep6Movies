@@ -28,7 +28,7 @@ function GetMovieInfo(){
 
   xhr.send()
   xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       var data = xhr.responseText;
       detailedData = JSON.parse(data); //id,title,year
@@ -61,7 +61,7 @@ function GetActors()
 
   xhr.send()
   xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       var data = xhr.responseText;
       actorsJson = JSON.parse(data);
@@ -78,7 +78,7 @@ function GetImage()
 
   xhr.send()
   xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       var  data = xhr.responseText;
       imageJson = JSON.parse(data);
@@ -95,7 +95,7 @@ function GetRating()
 
   xhr.send()
   xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       var  data = xhr.responseText;
       ratingJson = JSON.parse(data);
@@ -112,7 +112,7 @@ function GetDirector()
 
   xhr.send()
   xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       var  data = xhr.responseText;
       directorJson = JSON.parse(data);
@@ -129,7 +129,7 @@ function GetComment()
 
   xhr.send()
   xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       var  data = xhr.responseText;
       commentJson = JSON.parse(data);
