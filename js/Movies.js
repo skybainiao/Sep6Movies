@@ -10,17 +10,40 @@ const imageUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getImage?id=00';
 
 
 
+let user = document.getElementById('lg');
+user.onclick=()=>checkProfile();
+let username = localStorage.getItem('username');
+
+
+let imgs = [];
+let names = [];
+let times = [];
+let ratingsList = [];
+let items = [];
+//items[0].onclick=()=>goInfo();
+
+
+for (let i = 1; i <= 12; i++) {
+  let img = document.getElementById('img' + i);
+  let name = document.getElementById('s' + i);
+  let time = document.getElementById('time' + i);
+  let rating = document.getElementById('rating' + i);
+  let item = document.getElementById('item' + i);
+
+  imgs.push(img);
+  names.push(name);
+  times.push(time);
+  ratingsList.push(rating);
+  items.push(item);
+}
+
+
+
 
 window.onload=function (){
   changeStatus();
   GetMovies();
 }
-
-//给index用的
-let user = document.getElementById('lg');
-user.onclick=()=>checkProfile();
-let username = localStorage.getItem('username');
-
 
 function changeStatus(){
   if (username!==null){
@@ -36,27 +59,10 @@ function checkProfile(){
   else {
     window.location.href = "html/profile.html";
   }
-
 }
 
-let imgs = [];
-let names = [];
-let times = [];
-let ratingsList = [];
-let items = [];
-
-for (let i = 1; i <= 12; i++) {
-  let img = document.getElementById('img' + i);
-  let name = document.getElementById('s' + i);
-  let time = document.getElementById('time' + i);
-  let rating = document.getElementById('rating' + i);
-  let item = document.getElementById('item' + i);
-
-  imgs.push(img);
-  names.push(name);
-  times.push(time);
-  ratingsList.push(rating);
-  items.push(item);
+function goInfo() {
+  localStorage.setItem('title', names[0]);
 }
 
 
@@ -113,9 +119,7 @@ function GetMovies(){
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
         console.log(xhr.responseText)
-        var data = xhr.responseText;
-
-        imgs[i].src=data;
+        imgs[i].src=xhr.responseText;
       }
     }
   }

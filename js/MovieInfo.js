@@ -19,6 +19,8 @@ var username = '';
 var AddCommentUri = 'http://sep-db-386814.ew.r.appspot.com/comment/add/one';
 
 
+
+
 function GetMovieInfo(){
   GetId();
   const xhr = new XMLHttpRequest();
