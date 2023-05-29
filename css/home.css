@@ -107,3 +107,37 @@ section {
   width: 90%;
   height: auto;
 }
+
+p {
+  font-family: Arial, sans-serif;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Highlight movie titles */
+strong {
+  display: block;
+  color: #2a2a2a;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* Color movie times and rating */
+#time1, #time2, #time3, #time4, #time5, #time6, #time7, #time8, #time9, #time10, #time11, #time12 {
+  color: #ff7f50; /*coral color*/
+}
+
+#rating1, #rating2, #rating3, #rating4, #rating5, #rating6, #rating7, #rating8, #rating9, #rating10, #rating11, #rating12 {
+  color: #008000; /*green color*/
+}
+
+a {
+  text-decoration: none;
+}
+
+a.item {
+  text-decoration: none;
+}
+
