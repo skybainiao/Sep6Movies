@@ -9,6 +9,14 @@ const actorsUri = 'http://sep-db-386814.ew.r.appspot.com/people/getActors?movieT
 const searchUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getByIdTitle?pageNum=1&pageSize=12&id=0&title=';
 var searchTitle = '';
 
+let userA = document.getElementById('lg');
+userA.onclick=()=>checkProfile();
+
+window.onload=function (){
+  changeStatus();
+  GetMoviesForIndex();
+}
+
 //给index用的
 let user = document.getElementById('lg');
 let username = localStorage.getItem('username');
@@ -18,7 +26,15 @@ function changeStatus(){
   user.innerHTML=username;
 }
 
+function checkProfile(){
+  if (username===null){
+    window.location.href = "html/Login.html";
+  }
+  else {
+    window.location.href = "html/profile.html";
+  }
 
+}
 
 
 
@@ -39,10 +55,7 @@ for (let i = 1; i <= 12; i++) {
   ratings.push(rating);
 }
 
-window.onload=function (){
-  changeStatus();
-  GetMoviesForIndex();
-}
+
 
 function GetMoviesForIndex(){
   const xhr = new XMLHttpRequest();
