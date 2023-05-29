@@ -9,8 +9,7 @@ const actorsUri = 'http://sep-db-386814.ew.r.appspot.com/people/getActors?movieT
 const searchUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getByIdTitle?pageNum=1&pageSize=12&id=0&title=';
 var searchTitle = '';
 
-let userA = document.getElementById('lg');
-userA.onclick=()=>checkProfile();
+
 
 window.onload=function (){
   changeStatus();
@@ -19,6 +18,7 @@ window.onload=function (){
 
 //给index用的
 let user = document.getElementById('lg');
+user.onclick=()=>checkProfile();
 let username = localStorage.getItem('username');
 
 
