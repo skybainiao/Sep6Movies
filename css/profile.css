@@ -1,7 +1,8 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f0f0f0;
 }
 
 header {
@@ -78,5 +79,99 @@ nav ul li a {
 
 #search button:hover {
   background-color: #0056b3;
+}
+
+
+.main-container {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.profile-info {
+  padding: 100px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.profile-info h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.profile-info p {
+  font-size: 20px;
+  color: #666;
+}
+
+.profile-info span {
+  font-weight: bold;
+  color: #333;
+}
+
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -23%;
+}
+
+section {
+  width: 80%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* This creates a 3-column grid */
+  grid-template-rows: repeat(5, auto);  /* This creates 5 rows */
+  gap: 20px;  /* This sets the gap between the grid items */
+}
+
+.grid-item {
+  width: 80%;
+}
+
+.cover-wp img {
+  width: 80%;
+  height: auto;
+}
+
+p {
+  font-family: Arial, sans-serif;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Highlight movie titles */
+strong {
+  display: block;
+  color: #2a2a2a;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* Color movie times and rating */
+#time1, #time2, #time3, #time4, #time5, #time6, #time7, #time8, #time9, #time10, #time11, #time12 {
+  color: #ff7f50; /*coral color*/
+}
+
+#rating1, #rating2, #rating3, #rating4, #rating5, #rating6, #rating7, #rating8, #rating9, #rating10, #rating11, #rating12 {
+  color: #008000; /*green color*/
+}
+
+a {
+  text-decoration: none;
+}
+
+a.item {
+  text-decoration: none;
 }
 
