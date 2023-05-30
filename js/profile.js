@@ -6,7 +6,7 @@ var listUri = 'http://sep-db-386814.ew.r.appspot.com/user/movieList/getList?user
 var listPage = 1;
 var listJson = '';
 var removeListUri = 'http://sep-db-386814.ew.r.appspot.com/user/movieList/removeMovie?userId=';
-var removedMovieId = 0;
+//var removedMovieId = 0;
 var commentUri = 'http://sep-db-386814.ew.r.appspot.com/comment/get/user?uId=';
 var commentJson = '';
 var removeCommentUri = 'http://sep-db-386814.ew.r.appspot.com/comment/remove/one?cId=';
@@ -17,6 +17,7 @@ var newRating = '';
 var newMovieCommentId = 0;
 var newMovieCommentTitle = '';
 var newMovieCommentYear = 0;
+//var index = 0;
 
 window.onload=function (){
   changeStatus();
@@ -124,7 +125,10 @@ function GetList()
         var deleteBtn = document.createElement("button");
         deleteBtn.classList.add("delete-button");
         deleteBtn.innerHTML = "Delete";
+        console.log(listJson.list[i].id);
+
         deleteBtn.addEventListener('click', function() {
+          console.log(listJson);
           RemoveMovieFromList(listJson.list[i].id);
           trObj.remove();
         });
@@ -165,9 +169,11 @@ function UpdateUser()
 
 function RemoveMovieFromList(removedMovieId) //更改removeId
 {
-  const Json = {
-    removedMovieId
-  }
+  const Json =
+    [
+      removedMovieId
+      ]
+
   const xhr = new XMLHttpRequest(); // 新建一个XMLHttpRequest对象
   xhr.open('DELETE', `${removeListUri}${userJson.userId}`, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
