@@ -11,7 +11,7 @@
 
 </head>
 
-<body>
+<body onload="GetMovieInfo()">
 
 
 <header>
@@ -49,33 +49,31 @@
   <div class="row">
     <div class="col-sm-8">
       <div class="row">
-        <h1 class="mb-4">Movie Title<span>(Year)</span></h1>
+        <h1 class="mb-4" id="title">Movie Title</h1>
         <div class="col-sm-4">
-          <img src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2619575566.jpg" alt="电影海报"
+          <img id="image" src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2619575566.jpg" alt="电影海报"
                class="img-fluid">
         </div>
         <div class="col-sm-8">
-          <p><strong>Director: </strong><a href="#">Siyu Xia</a></p>
-          <p><strong>Writers: </strong><a href="#">Siyu Xia</a></p>
-          <p><strong>Stars: </strong><a href="#">Siyu Xia</a>，<a href="#">Siyu Xia</a>，<a href="#">Siyu Xia</a></p>
-          <p><strong>Genres: </strong>Action, Crime, Thriller</p>
-          <p><strong>Country/region of production: </strong>US</p>
-          <p><strong>Language: </strong>English</p>
-          <p><strong>Length of film: </strong>139 minutes</p>
-          <p><strong>IMDb：</strong>tt5433140</p>
+          <p><strong id="director">Director: </strong></p>
+          <p><strong id="actors">Stars: </strong></p>
+          <p><strong id="genre">Genres: </strong></p>
+          <p><strong id="country">Country/region of production: </strong></p>
+          <p><strong id="language">Language: </strong></p>
+          <p><strong id="movieId">IMDb：</strong></p>
         </div>
         <div><h2>Overview</h2>
-          <p>overview content</p>
+          <p id="overview">overview content</p>
         </div>
       </div>
     </div>
     <div class="col-sm-4 border-left">
       <p class="">Rating</p>
       <div class="flex-center">
-        <h1>6.4</h1>
+        <h1 id="rating"></h1>
         <div class="score">
           <p>⭐⭐⭐<span class="filter">⭐⭐</span></p>
-          <p>11111111 people rated</p>
+          <p id="votes"></p>
         </div>
       </div>
       <div class="slider">

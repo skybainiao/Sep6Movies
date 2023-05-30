@@ -139,15 +139,10 @@ function GetMovies(){
         times[i].innerHTML="Opened "+json.list[i].year;
         GetRating(json.list[i].id,i);
         GetImage(json.list[i].id,i);
+        items[i].href = "movieInfo.html?id=" + json.list[i].id;
       }
     }
   }
-
-
-
-
-
-
 
   function GetImage(movieId,i)
   {
@@ -164,53 +159,39 @@ function GetMovies(){
       }
     }
   }
+}
+function GetMovieInfo(){
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `${infoUri}${movieId}`, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send()
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
+      console.log(xhr.responseText)
+      var data = xhr.responseText;
+      var detailedData = JSON.parse(data); //id,title,year
 
 
 
-  window.onclick = function (e) {
-    var element = document.elementFromPoint(e.clientX,e.clientY);
-    if (element.classList.contains("movie"))
-    {
-      clickedId = element.id;
-      GetMovieInfo();
-      window.location.href = "../movieInfo.html?id=" + clickedId;
-    }
-  }
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `${actorsUri}${detailedData.title}&pageNum=1&pageSize=100`, true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.setRequestHeader('Accept', 'application/json')
 
-  function GetMovieInfo(){
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `${infoUri}${movieId}`, true)
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.setRequestHeader('Accept', 'application/json')
+      xhr.send()
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
+          console.log(xhr.responseText)
+          var data = xhr.responseText;
+          var actorsData = JSON.parse(data); //actors info
 
-    xhr.send()
-    xhr.onreadystatechange = () => {
-      if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
-        console.log(xhr.responseText)
-        var data = xhr.responseText;
-        var detailedData = JSON.parse(data); //id,title,year
-
-
-
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', `${actorsUri}${detailedData.title}&pageNum=1&pageSize=100`, true)
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.setRequestHeader('Accept', 'application/json')
-
-        xhr.send()
-        xhr.onreadystatechange = () => {
-          if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
-            console.log(xhr.responseText)
-            var data = xhr.responseText;
-            var actorsData = JSON.parse(data); //actors info
-
-          }
         }
       }
     }
   }
 }
-
 
 
 

@@ -18,6 +18,19 @@ var userId = 0;
 var username = '';
 var AddCommentUri = 'http://sep-db-386814.ew.r.appspot.com/comment/add/one';
 
+var actors = '';
+
+let htmlTitle = document.getElementById('title');
+let htmlDirector = document.getElementById('director');
+let htmlActors = document.getElementById('actors');
+let htmlGenre = document.getElementById('genre');
+let htmlCountry = document.getElementById('country');
+let htmlLanguage = document.getElementById('language');
+let htmlMovieId = document.getElementById('movieId');
+let htmlOverview = document.getElementById('overview');
+let htmlRating = document.getElementById('rating');
+let htmlVotes = document.getElementById('votes');
+let htmlImg = document.getElementById('image');
 
 
 
@@ -33,10 +46,16 @@ function GetMovieInfo(){
     if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       var data = xhr.responseText;
-      detailedData = JSON.parse(data); //id,title,year
+      detailedData = JSON.parse(data); //id,title,year,image,language,country,genre,overview
+      htmlTitle.innerHTML = detailedData.title + "(" + detailedData.year + ")";
+      htmlGenre.innerHTML = "Genre: " + detailedData.genre;
+      htmlCountry.innerHTML = "Country/region of production: " + detailedData.country;
+      htmlLanguage.innerHTML = "Language: " + detailedData.language;
+      htmlMovieId.innerHTML = "IMDb：tt" + detailedData.id;
+      htmlOverview.innerHTML = detailedData.overview;
+      htmlImg.src = detailedData.imagePath;
       GetActors();
-      GetImage();
-      GetRating();
+      GetRating(); //rating,votes
       GetDirector();
       GetComment();
     }
@@ -67,11 +86,17 @@ function GetActors()
       console.log(xhr.responseText)
       var data = xhr.responseText;
       actorsJson = JSON.parse(data);
+      actors += actorsJson.list[0].name;
+      for (var i = 1; i < actorsJson.total; i++)
+      {
+        actors += "," + actorsJson.list[i].name;
+      }
+      htmlActors.innerHTML = "Stars: " + actors;
     }
   }
 }
 
-function GetImage1()
+function GetImage()
 {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `${imageUri}${movieId}`, true)
@@ -88,7 +113,7 @@ function GetImage1()
   }
 }
 
-function GetRating1()
+function GetRating()
 {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `${ratingUri}${movieId}`, true)
@@ -99,8 +124,10 @@ function GetRating1()
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
-      var  data = xhr.responseText;
+      var data = xhr.responseText;
       ratingJson = JSON.parse(data);
+      htmlRating.innerHTML = ratingJson.ratings.toFixed(1);
+      htmlVotes.innerHTML = ratingJson.votes + " people rated";
     }
   }
 }
@@ -118,6 +145,7 @@ function GetDirector()
       console.log(xhr.responseText)
       var  data = xhr.responseText;
       directorJson = JSON.parse(data);
+      htmlDirector.innerHTML = "Director: " + directorJson.name;
     }
   }
 }
