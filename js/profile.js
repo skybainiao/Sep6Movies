@@ -33,7 +33,8 @@ let UserId = document.getElementById('userid');
 let UserName = document.getElementById('username');
 let Email = document.getElementById('email');
 let FaCount = document.getElementById('movies-count');
-
+let faMovies = document.getElementById('FaMovies');
+let commentsList = document.getElementById('comments');
 
 
 function changeStatus(){
@@ -64,7 +65,6 @@ function toggleDropdown(id) {
 
 function profileLoading() {
   GetUser();
-  GetList();
   UserName.innerHTML=username;
   Email.innerHTML=username+"10086@gmail.com";
 
@@ -82,10 +82,12 @@ function GetUser()
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
-      userJson = xhr.responseText;
+      var  data = xhr.responseText;
+      userJson = JSON.parse(data);
 
       UserId.innerHTML=userJson.userId.toString();
-
+      GetList();
+      GetComment();
     }
   }
 }
@@ -93,7 +95,7 @@ function GetUser()
 function GetList()
 {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', `${listUri}${27}&pageNum=${listPage}&pageSize=15`, true)
+  xhr.open('GET', `${listUri}${userJson.userId}&pageNum=${listPage}&pageSize=15`, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.setRequestHeader('Accept', 'application/json')
 
@@ -101,8 +103,34 @@ function GetList()
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
-      listJson = xhr.responseText;
-      FaCount.innerHTML=listJson.size;
+      var  data = xhr.responseText;
+      listJson = JSON.parse(data);
+      FaCount.innerHTML = listJson.total;
+
+      for (var i = 0; i < listJson.total; i++)
+      {
+        var trObj = document.createElement("tr");
+
+        var movieNum = document.createElement("td");
+        var movieNumber = i;
+        movieNumber += 1;
+        movieNum.innerHTML = "Movie" + movieNumber + ":";
+        trObj.appendChild(movieNum);
+
+        var movieTitle = document.createElement("td");
+        movieTitle.innerHTML = listJson.list[i].title;
+        trObj.appendChild(movieTitle);
+
+        var deleteBtnTd = document.createElement("td");
+        var deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("delete-button");
+        deleteBtn.innerHTML = "Delete";
+        deleteBtnTd.appendChild(deleteBtn);
+        trObj.appendChild(deleteBtnTd);
+
+        faMovies.appendChild(trObj);
+      }
+
     }
   }
 }
@@ -153,7 +181,7 @@ function RemoveMovieFromList() //更改removeId
 function GetComment()
 {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', `${commentUri}${userJson.id}`, true)
+  xhr.open('GET', `${commentUri}${userJson.userId}`, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.setRequestHeader('Accept', 'application/json')
 
@@ -161,7 +189,32 @@ function GetComment()
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
-      commentJson = xhr.responseText;
+      var  data = xhr.responseText;
+      commentJson = JSON.parse(data);
+
+      for (var i = 0; i < commentJson.length; i++)
+      {
+        var trObj = document.createElement("tr");
+
+        var comNum = document.createElement("td");
+        var comNumber = i;
+        comNumber += 1;
+        comNum.innerHTML = "Comment" + comNumber + ":";
+        trObj.appendChild(comNum);
+
+        var comContext = document.createElement("td");
+        comContext.innerHTML = commentJson[i].commentContext;
+        trObj.appendChild(comContext);
+
+        var deleteBtnTd = document.createElement("td");
+        var deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("delete-button");
+        deleteBtn.innerHTML = "Delete";
+        deleteBtnTd.appendChild(deleteBtn);
+        trObj.appendChild(deleteBtnTd);
+
+        commentsList.appendChild(trObj);
+      }
     }
   }
 }
