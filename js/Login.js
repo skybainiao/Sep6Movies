@@ -13,13 +13,11 @@ function Login(){
   xhr.send()
   xhr.onreadystatechange = () => {
     //获取响应内容
-    if(xhr.readyState == 4 && /^20\d$/.test(xhr.status)){
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
-      var  data = xhr.responseText;
-      var json=JSON.parse(data);
+      var data = xhr.responseText;
 
-      alert(json);
-      if (json.toString() == 'Login success')
+      if (xhr.responseText === 'Login success')
       {
         window.location.href = "../index.html?username=" + username;
       }
