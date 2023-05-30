@@ -32,6 +32,29 @@ let htmlRating = document.getElementById('rating');
 let htmlVotes = document.getElementById('votes');
 let htmlImg = document.getElementById('image');
 
+let user = document.getElementById('lg');
+user.onclick=()=>checkProfile();
+let username1 = localStorage.getItem('username');
+
+window.onload=function (){
+  changeStatus();
+}
+
+
+function changeStatus(){
+  user.innerHTML=username1;
+}
+
+function checkProfile(){
+  if (username1===null){
+    window.location.href = "html/Login.html";
+  }
+  else {
+    window.location.href = "html/profile.html";
+  }
+
+}
+
 
 
 function GetMovieInfo(){
