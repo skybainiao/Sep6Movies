@@ -31,258 +31,52 @@
       <input type="text" placeholder="search...">
       <button>Search</button>
     </div>
+
+
     <div id="lg" >LOGIN/SIGNUP</div>
 
   </nav>
 </header>
 
 
+
 <div class="main-container">
   <div class="profile-info">
     <h2>Profile</h2>
-    <p>Username: idfc<span id="username"></span></p>
-    <p>Email: chen2468830035@gmail.com<span id="email"></span></p>
-    <p>Favorite movies count: 6<span id="movies-count"></span></p>
+    <p>UserId: <span id="userid">27</span></p>
+    <p>Username: <span id="username">idfc</span></p>
+    <p>Email: <span id="email">chen2468830035@gmail.com</span></p>
+    <p>Favorite movies count: <span id="movies-count">0</span></p>
+
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('moviesDropdown')">Favorite movie list ▼</button>
+      <div id="moviesDropdown" class="dropdown-content">
+        <table>
+          <tr><td>Movie1：</td><td>星际穿越</td><td><button class="delete-button">Delete</button></td></tr>
+          <tr><td>Movie2：</td><td>复仇者联盟</td><td><button class="delete-button">Delete</button></td></tr>
+          <tr><td>Movie3：</td><td>阿凡达</td><td><button class="delete-button">Delete</button></td></tr>
+          <tr><td>Movie4：</td><td>疯狂原始人</td><td><button class="delete-button">Delete</button></td></tr>
+          <tr><td>Movie5：</td><td>大白鲨</td><td><button class="delete-button">Delete</button></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('commentsDropdown')">Check Comments ▼</button>
+      <div id="commentsDropdown" class="dropdown-content">
+        <table>
+          <tr><td>Comment1：</td><td>电影很棒！</td><td><button class="delete-button">Delete</button></td></tr>
+          <tr><td>Comment2：</td><td>我喜欢这个电影！</td><td><button class="delete-button">Delete</button></td></tr>
+          <!-- 更多评论... -->
+        </table>
+      </div>
+    </div>
+
+    <button id="out">Log out</button>
   </div>
 </div>
 
-<main>
-  <section class="slide-page" data-index="0">
-    <h1>Favorite Movies</h1>
-    <div class="grid-container">
 
-      <!-- Grid Item 1 -->
-      <div class="grid-item">
-        <a id="item1" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img1" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s1">National Theatre Live: Best of Enemies</strong>
-          </p>
-          <p id="time1">
-            Opened May 22, 2023
-          </p>
-          <p id="rating1">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item2" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img2" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s2">
-              Victim/Suspect
-            </strong>
-          </p>
-          <p id="time2">
-            Opened May 23, 2023
-          </p>
-          <p id="rating2">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item3" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img3" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s3">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time3">
-            Opened May 25, 2023
-          </p>
-          <p id="rating3">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item4" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img4" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s4">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time4">
-            Opened May 25, 2023
-          </p>
-          <p id="rating4">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item5" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img5" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s5">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time5">
-            Opened May 25, 2023
-          </p>
-          <p id="rating5">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item6" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img6" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s6">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time6">
-            Opened May 25, 2023
-          </p>
-          <p id="rating6">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item7" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img7" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s7">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time7">
-            Opened May 25, 2023
-          </p>
-          <p id="rating7">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item8" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img8" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s8">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time8">
-            Opened May 25, 2023
-          </p>
-          <p id="rating8">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item9" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img9" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s9">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time9">
-            Opened May 25, 2023
-          </p>
-          <p id="rating9">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item10" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img10" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s10">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time10">
-            Opened May 25, 2023
-          </p>
-          <p id="rating10">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item11" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img11" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s11">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time11">
-            Opened May 25, 2023
-          </p>
-          <p id="rating11">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-      <div class="grid-item">
-        <a id="item12" href="movieInfo.html" target="_blank">
-          <div class="cover-wp">
-            <img id="img12" src="https://placehold.co/200x300" alt="Movie 1">
-          </div>
-          <p>
-            <strong id="s12">
-              Roger Waters: This Is Not a Drill - Live Broadcast from Prague
-            </strong>
-          </p>
-          <p id="time12">
-            Opened May 25, 2023
-          </p>
-          <p id="rating12">
-            Rating:♥♥♥♥♥
-          </p>
-        </a>
-      </div>
-
-
-
-    </div>
-  </section>
-</main>
 
 
 

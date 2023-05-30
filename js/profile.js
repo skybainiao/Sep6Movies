@@ -20,12 +20,20 @@ var newMovieCommentYear = 0;
 
 window.onload=function (){
   changeStatus();
+  profileLoading();
 }
 
-//给index用的
+
 let user = document.getElementById('lg');
 user.onclick=()=>checkProfile();
 let username = localStorage.getItem('username');
+let logout = document.getElementById('out');
+logout.onclick=()=>Logout();
+let UserId = document.getElementById('userid');
+let UserName = document.getElementById('username');
+let Email = document.getElementById('email');
+let FaCount = document.getElementById('movies-count');
+
 
 
 function changeStatus(){
@@ -42,6 +50,27 @@ function checkProfile(){
 
 }
 
+function Logout() {
+  localStorage.removeItem("username");
+  localStorage.clear();
+  window.location.href = "../index.html";
+}
+
+
+function toggleDropdown(id) {
+  document.getElementById(id).classList.toggle("show");
+}
+
+
+function profileLoading() {
+  GetUser();
+  GetList();
+  UserName.innerHTML=username;
+  Email.innerHTML=username+"10086@gmail.com";
+
+}
+
+
 function GetUser()
 {
   const xhr = new XMLHttpRequest();
@@ -54,6 +83,9 @@ function GetUser()
     if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       userJson = xhr.responseText;
+
+      UserId.innerHTML=userJson.userId.stringify();
+
     }
   }
 }
@@ -92,6 +124,7 @@ function GetList()
     if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
       console.log(xhr.responseText)
       listJson = xhr.responseText;
+      FaCount.innerHTML=listJson.total.stringify();
     }
   }
 }
