@@ -84,8 +84,25 @@ function GetUser()
       console.log(xhr.responseText)
       userJson = xhr.responseText;
 
-      UserId.innerHTML=userJson.userId.stringify();
+      UserId.innerHTML=userJson.userId.toString();
 
+    }
+  }
+}
+
+function GetList()
+{
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `${listUri}${27}&pageNum=${listPage}&pageSize=15`, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send()
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
+      console.log(xhr.responseText)
+      listJson = xhr.responseText;
+      FaCount.innerHTML=listJson.size;
     }
   }
 }
@@ -112,22 +129,7 @@ function UpdateUser()
   }
 }
 
-function GetList()
-{
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', `${listUri}${userJson.id}&pageNum=${listPage}&pageSize=15`, true)
-  xhr.setRequestHeader('Content-Type', 'application/json')
-  xhr.setRequestHeader('Accept', 'application/json')
 
-  xhr.send()
-  xhr.onreadystatechange = () => {
-    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
-      console.log(xhr.responseText)
-      listJson = xhr.responseText;
-      FaCount.innerHTML=listJson.total.stringify();
-    }
-  }
-}
 
 function RemoveMovieFromList() //更改removeId
 {
