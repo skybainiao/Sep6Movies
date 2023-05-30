@@ -11,6 +11,8 @@ const directorUri = 'http://sep-db-386814.ew.r.appspot.com/people/getDirectorByI
 var directorJson = '';
 const commentUri = 'http://sep-db-386814.ew.r.appspot.com/comment/get/movie?mId=';
 var commentJson = '';
+var userUri = 'http://sep-db-386814.ew.r.appspot.com/user/getUser?id=0&username=';
+var userJson = '';
 
 var commentContext = '';
 var rating = 0;
@@ -36,6 +38,10 @@ let user1 = document.getElementById('lg');
 user1.onclick=()=>checkProfile();
 let username1 = localStorage.getItem('username');
 
+let commentsList = document.getElementById('comments');
+
+let commentArea = document.getElementById('commentArea');
+
 
 
 function changeStatus(){
@@ -56,6 +62,7 @@ function checkProfile(){
 
 function GetMovieInfo(){
   GetId();
+  GetUser();
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `${infoUri}${movieId}`, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
@@ -184,18 +191,52 @@ function GetComment()
       console.log(xhr.responseText)
       var  data = xhr.responseText;
       commentJson = JSON.parse(data);
+
+      for (var i = 0; i < commentJson.length; i++)
+      {
+        var index = i;
+        index += 1;
+
+        var commentDiv = document.createElement("div");
+        commentDiv.classList.add("comment");
+
+        var commentP = document.createElement("p");
+
+        var commentStrong = document.createElement("strong");
+        commentStrong.innerHTML = "User " + index + ":";
+        commentP.appendChild(commentStrong);
+
+        var commentPContent = document.createElement("p");
+        commentPContent.textContent = commentJson[i].commentContext;
+        commentP.appendChild(commentPContent);
+
+        commentDiv.appendChild(commentP);
+
+        commentsList.appendChild(commentDiv);
+
+      }
     }
   }
 }
 
+function addC()
+{
+  console.log(commentArea.value)
+  console.log(userId)
+  console.log(username1)
+  console.log(movieId)
+  console.log(detailedData.title)
+  console.log(detailedData.year)
+}
 function AddComment()//调用前设置userid username
 {
+  commentContext = commentArea.value;
   const Json = {
     "commentContext": commentContext,
-    "rating": rating,
+    "rating": 6.4,
     "user": {
       "userId": userId,
-      "username": username
+      "username": username1
     },
     "movie": {
       "id": movieId,
@@ -203,7 +244,7 @@ function AddComment()//调用前设置userid username
       "year": detailedData.year
     }
   }
-
+  const xhr = new XMLHttpRequest();
   xhr.open('POST', AddCommentUri, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.setRequestHeader('Accept', 'application/json')
@@ -217,3 +258,23 @@ function AddComment()//调用前设置userid username
     }
   }
 }
+
+function GetUser()
+{
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `${userUri}${username1}`, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send()
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
+      console.log(xhr.responseText)
+      var  data = xhr.responseText;
+      userJson = JSON.parse(data);
+
+      userId = userJson.userId.toString();
+    }
+  }
+}
+
