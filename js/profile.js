@@ -127,9 +127,10 @@ function GetList()
         deleteBtn.innerHTML = "Delete";
         console.log(listJson.list[i].id);
 
+        let a = i;
         deleteBtn.addEventListener('click', function() {
           console.log(listJson);
-          RemoveMovieFromList(listJson.list[i].id);
+          RemoveMovieFromList(listJson.list[a].id);
           trObj.remove();
         });
         deleteBtnTd.appendChild(deleteBtn);
@@ -225,13 +226,19 @@ function GetComment()
         deleteBtnTd.appendChild(deleteBtn);
         trObj.appendChild(deleteBtnTd);
 
+        let a = i;
+        deleteBtn.addEventListener('click', function() {
+          RemoveComment(commentJson[a].cid);
+          trObj.remove();
+        });
+
         commentsList.appendChild(trObj);
       }
     }
   }
 }
 
-function RemoveComment()//更改commentId
+function RemoveComment(commentId)//更改commentId
 {
   const xhr = new XMLHttpRequest();
   xhr.open('DELETE', `${removeCommentUri}${commentId}`, true)
