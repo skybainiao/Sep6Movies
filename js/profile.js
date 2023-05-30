@@ -91,7 +91,6 @@ function GetUser()
     }
   }
 }
-
 function GetList()
 {
   const xhr = new XMLHttpRequest();
@@ -125,6 +124,10 @@ function GetList()
         var deleteBtn = document.createElement("button");
         deleteBtn.classList.add("delete-button");
         deleteBtn.innerHTML = "Delete";
+        deleteBtn.addEventListener('click', function() {
+          RemoveMovieFromList(listJson.list[i].id);
+          trObj.remove();
+        });
         deleteBtnTd.appendChild(deleteBtn);
         trObj.appendChild(deleteBtnTd);
 
@@ -134,6 +137,7 @@ function GetList()
     }
   }
 }
+
 
 function UpdateUser()
 {
@@ -159,12 +163,13 @@ function UpdateUser()
 
 
 
-function RemoveMovieFromList() //更改removeId
+function RemoveMovieFromList(removedMovieId) //更改removeId
 {
   const Json = {
     removedMovieId
   }
-  xhr.open('DELETE', `${removeListUri}${userJson.id}`, true)
+  const xhr = new XMLHttpRequest(); // 新建一个XMLHttpRequest对象
+  xhr.open('DELETE', `${removeListUri}${userJson.userId}`, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.setRequestHeader('Accept', 'application/json')
 
@@ -177,6 +182,7 @@ function RemoveMovieFromList() //更改removeId
     }
   }
 }
+
 
 function GetComment()
 {
