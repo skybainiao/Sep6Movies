@@ -19,6 +19,7 @@ function Login(){
 
       if (xhr.responseText === 'Login success')
       {
+        localStorage.setItem('username', username);
         window.location.href = "../index.html?username=" + username;
       }
     }
