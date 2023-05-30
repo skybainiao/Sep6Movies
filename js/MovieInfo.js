@@ -71,7 +71,7 @@ function GetActors()
   }
 }
 
-function GetImage()
+function GetImage1()
 {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `${imageUri}${movieId}`, true)
@@ -88,7 +88,7 @@ function GetImage()
   }
 }
 
-function GetRating()
+function GetRating1()
 {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `${ratingUri}${movieId}`, true)

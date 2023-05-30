@@ -41,8 +41,6 @@ for (let i = 1; i <= 12; i++) {
 }
 
 
-
-
 window.onload=function (){
   changeStatus();
   GetMovies();
@@ -68,11 +66,11 @@ function goInfo() {
   localStorage.setItem('title', names[0]);
 }
 
-
 function searchMovie() {
   Search(searchText.value);
   hideItems();
 }
+
 
 function Search(searchTitle) //调用前更改searchTitle参数
 {
@@ -91,11 +89,31 @@ function Search(searchTitle) //调用前更改searchTitle参数
       names[0].innerHTML=json.list[0].title;
       times[0].innerHTML="Opened "+json.list[0].year;
       GetRating(json.list[0].id,0);
-      GetImage(json.list[0].id,0);
+      imgs[0].src=json.list[0].imagePath;
 
     }
   }
 }
+
+function GetRating(movieId,i)
+{
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `${ratingUri}${movieId}`, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send()
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
+      console.log(xhr.responseText)
+      var  data = xhr.responseText;
+
+      ratingJson = JSON.parse(data);
+      ratingsList[i].innerHTML="Rating: "+ratingJson.ratings;
+    }
+  }
+}
+
 
 function hideItems() {
   for (let i = 1; i < items.length; i++) {
@@ -125,24 +143,10 @@ function GetMovies(){
     }
   }
 
-  function GetRating(movieId,i)
-  {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `${ratingUri}${movieId}`, true)
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.setRequestHeader('Accept', 'application/json')
 
-    xhr.send()
-    xhr.onreadystatechange = () => {
-      if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
-        console.log(xhr.responseText)
-        var  data = xhr.responseText;
 
-        ratingJson = JSON.parse(data);
-        ratingsList[i].innerHTML="Rating: "+ratingJson.ratings;
-      }
-    }
-  }
+
+
 
 
   function GetImage(movieId,i)
