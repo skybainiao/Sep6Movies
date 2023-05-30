@@ -7,6 +7,7 @@ var ratingJson = '';
 const searchUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getByIdTitle?pageNum=1&pageSize=12&id=0&title=';
 var searchTitle = '';
 const imageUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getImage?id=00';
+const moviesByGenresUri = 'https://api.themoviedb.org/3/discover/movie?api_key=a1d579240045bb45c21c03bdc18a0f57&with_genres=';
 
 
 
@@ -189,6 +190,24 @@ function GetMovieInfo(){
 
         }
       }
+    }
+  }
+}
+
+function GetMoviesByGenres(genreId)
+{
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `${moviesByGenresUri}${genreId}`, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send()
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && /^20\d$/.test(xhr.status)) {
+      console.log(xhr.responseText)
+      var data = xhr.responseText;
+      var json = JSON.parse(data); //json格式电影信息
+
     }
   }
 }
