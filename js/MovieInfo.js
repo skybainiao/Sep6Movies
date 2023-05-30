@@ -58,9 +58,6 @@ function checkProfile(){
 
 }
 
-
-
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 document.querySelectorAll('.star').forEach(star => {
   star.addEventListener('click', setRating);
 });
@@ -68,7 +65,7 @@ document.querySelectorAll('.star').forEach(star => {
 function setRating(ev) {
   let span = ev.currentTarget;
   let value = parseInt(span.dataset.value, 10);
-  document.getElementById("rating").innerText = value;
+  document.getElementById("addRating").innerText = value;
 
   document.querySelectorAll('.star').forEach(star => {
     star.style.color = parseInt(star.dataset.value, 10) <= value ? 'gold' : 'black';
@@ -240,21 +237,14 @@ function GetComment()
   }
 }
 
-function addC()
-{
-  console.log(commentArea.value)
-  console.log(userId)
-  console.log(username1)
-  console.log(movieId)
-  console.log(detailedData.title)
-  console.log(detailedData.year)
-}
 function AddComment()//调用前设置userid username
 {
   commentContext = commentArea.value;
+  var rating = document.getElementById('addRating').innerText;
+  console.log(rating)
   const Json = {
     "commentContext": commentContext,
-    "rating": 6.4,
+    "rating": rating,
     "user": {
       "userId": userId,
       "username": username1

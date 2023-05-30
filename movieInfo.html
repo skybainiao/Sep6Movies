@@ -73,22 +73,10 @@
     <div class="col-sm-4 border-left">
       <p class="">Rating</p>
       <div class="flex-center">
-
         <h1 id="rating"></h1>
-
-        <div style="margin-left: 20px" class="rating-container">
-          <span class="star" data-value="1">&#9734;</span>
-          <span class="star" data-value="2">&#9734;</span>
-          <span class="star" data-value="3">&#9734;</span>
-          <span class="star" data-value="4">&#9734;</span>
-          <span class="star" data-value="5">&#9734;</span>
-          <span class="star" data-value="6">&#9734;</span>
-          <span class="star" data-value="7">&#9734;</span>
-          <span class="star" data-value="8">&#9734;</span>
-          <span class="star" data-value="9">&#9734;</span>
-          <span class="star" data-value="10">&#9734;</span>
+        <div class="score">
+          <p id="votes"></p>
         </div>
-
       </div>
 
       <div class="slider">
@@ -109,22 +97,41 @@
           </div>
 
 
-          <div class="comments">
-            <div class="comment">
-              <p><strong>User 1:</strong> it's a really good movie！</p>
-            </div>
-            <div class="comment">
-              <p><strong>User 2:</strong> I like the plot of this movie very much</p>
-            </div>
-            <div class="comment">
-              <p><strong>User 3:</strong> I think the acting in this movie is excellent</p>
-            </div>
+          <div class="comments" id="comments">
+<!--            <div class="comment">-->
+<!--              <p><strong>User 1:</strong> it's a really good movie！</p>-->
+<!--            </div>-->
+<!--            <div class="comment">-->
+<!--              <p><strong>User 2:</strong> I like the plot of this movie very much</p>-->
+<!--            </div>-->
+<!--            <div class="comment">-->
+<!--              <p><strong>User 3:</strong> I think the acting in this movie is excellent</p>-->
+<!--            </div>-->
           </div>
 
 
           <div class="submit-comment">
-            <textarea class="comment-input" placeholder="enter your comment..."></textarea>
-            <button class="comment-submit-btn">post a comment</button>
+            <label for="commentArea"></label><textarea id="commentArea" class="comment-input" placeholder="enter your comment..."></textarea>
+            <div class="col-sm-4 border-left">
+              <p class="">Rating</p>
+              <div class="flex-center">
+                <h1 id="addRating">10</h1>
+                <div style="margin-left: 20px" class="rating-container">
+                  <span class="star" data-value="1">&#9734;</span>
+                  <span class="star" data-value="2">&#9734;</span>
+                  <span class="star" data-value="3">&#9734;</span>
+                  <span class="star" data-value="4">&#9734;</span>
+                  <span class="star" data-value="5">&#9734;</span>
+                  <span class="star" data-value="6">&#9734;</span>
+                  <span class="star" data-value="7">&#9734;</span>
+                  <span class="star" data-value="8">&#9734;</span>
+                  <span class="star" data-value="9">&#9734;</span>
+                  <span class="star" data-value="10">&#9734;</span>
+                </div>
+              </div>
+            </div>
+            <button class="comment-submit-btn" onclick="AddComment()">post a comment</button>
+
           </div>
         </div>
       </div>
