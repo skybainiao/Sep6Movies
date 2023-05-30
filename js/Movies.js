@@ -16,7 +16,7 @@ let username = localStorage.getItem('username');
 let searchBt = document.getElementById('searchBt');
 searchBt.onclick=()=>searchMovie();
 let searchText = document.getElementById('searchTxt');
-
+let tip = document.getElementById('tip');
 
 let imgs = [];
 let names = [];
