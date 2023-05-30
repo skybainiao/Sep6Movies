@@ -19,6 +19,27 @@ searchBt.onclick=()=>searchMovie();
 let searchText = document.getElementById('searchTxt');
 let tip = document.getElementById('tip');
 
+let Action = document.getElementById('28');
+Action.onclick=()=>GetMoviesByGenres(28);
+let Adventure = document.getElementById('12');
+Adventure.onclick=()=>GetMoviesByGenres(12);
+let Comedy = document.getElementById('35');
+Comedy.onclick=()=>GetMoviesByGenres(35);
+let Crime = document.getElementById('80');
+Crime.onclick=()=>GetMoviesByGenres(80);
+let Drama = document.getElementById('18');
+Drama.onclick=()=>GetMoviesByGenres(18);
+let Fantasy = document.getElementById('14');
+Fantasy.onclick=()=>GetMoviesByGenres(14);
+let Historical = document.getElementById('36');
+Historical.onclick=()=>GetMoviesByGenres(36);
+let Mystery = document.getElementById('9648');
+Mystery.onclick=()=>GetMoviesByGenres(9648);
+let Romance = document.getElementById('10749');
+Romance.onclick=()=>GetMoviesByGenres(10749);
+let Science = document.getElementById('878');
+Science.onclick=()=>GetMoviesByGenres(878);
+
 let imgs = [];
 let names = [];
 let times = [];
@@ -207,6 +228,14 @@ function GetMoviesByGenres(genreId)
       console.log(xhr.responseText)
       var data = xhr.responseText;
       var json = JSON.parse(data); //json格式电影信息
+
+      for (let i = 0; i < 12; i++) {
+        names[i].innerHTML=json.results[i].title;
+        times[i].innerHTML="Opened "+json.results[i].release_date;
+        ratingsList[i].innerHTML="Rating: "+json.results[i].vote_average;
+        imgs[i].src="http://image.tmdb.org/t/p/w500/"+json.results[i].poster_path;
+        //items[i].href = "movieInfo.html?id=" + json.list[i].id;
+      }
 
     }
   }
