@@ -13,6 +13,9 @@ const imageUri = 'http://sep-db-386814.ew.r.appspot.com/movie/getImage?id=00';
 let user = document.getElementById('lg');
 user.onclick=()=>checkProfile();
 let username = localStorage.getItem('username');
+let searchBt = document.getElementById('searchBt');
+searchBt.onclick=()=>searchMovie();
+let searchText = document.getElementById('searchTxt');
 
 
 let imgs = [];
@@ -65,6 +68,40 @@ function goInfo() {
   localStorage.setItem('title', names[0]);
 }
 
+
+function searchMovie() {
+  Search(searchText.value);
+  hideItems();
+}
+
+function Search(searchTitle) //调用前更改searchTitle参数
+{
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `${searchUri}${searchTitle}`, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send()
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && /^20\d$/.test(xhr.status)) {
+      console.log(xhr.responseText)
+      var data = xhr.responseText;
+      var json = JSON.parse(data); //输出
+
+      names[0].innerHTML=json.list[0].title;
+      times[0].innerHTML="Opened "+json.list[0].year;
+      GetRating(json.list[0].id,0);
+      GetImage(json.list[0].id,0);
+
+    }
+  }
+}
+
+function hideItems() {
+  for (let i = 1; i < items.length; i++) {
+    items[i].style.display = "none";
+  }
+}
 
 function GetMovies(){
   const xhr = new XMLHttpRequest();
@@ -174,19 +211,4 @@ function GetMovies(){
 
 
 
-function Search() //调用前更改searchTitle参数
-{
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', `${searchUri}${searchTitle}`, true)
-  xhr.setRequestHeader('Content-Type', 'application/json')
-  xhr.setRequestHeader('Accept', 'application/json')
 
-  xhr.send()
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && /^20\d$/.test(xhr.status)) {
-      console.log(xhr.responseText)
-      var data = xhr.responseText;
-      var json = JSON.parse(data); //输出
-    }
-  }
-}
