@@ -234,7 +234,11 @@ function GetMoviesByGenres(genreId)
         times[i].innerHTML="Opened "+json.results[i].release_date;
         ratingsList[i].innerHTML="Rating: "+json.results[i].vote_average;
         imgs[i].src="http://image.tmdb.org/t/p/w500/"+json.results[i].poster_path;
-        //items[i].href = "movieInfo.html?id=" + json.list[i].id;
+
+
+        //items[i].href = "movieInfo.html?id=" + json.results[i].id;
+
+
       }
 
     }
