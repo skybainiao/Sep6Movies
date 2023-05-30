@@ -60,6 +60,27 @@ function checkProfile(){
 
 
 
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+document.querySelectorAll('.star').forEach(star => {
+  star.addEventListener('click', setRating);
+});
+
+function setRating(ev) {
+  let span = ev.currentTarget;
+  let value = parseInt(span.dataset.value, 10);
+  document.getElementById("rating").innerText = value;
+
+  document.querySelectorAll('.star').forEach(star => {
+    star.style.color = parseInt(star.dataset.value, 10) <= value ? 'gold' : 'black';
+  });
+}
+
+
+
+
+
+
+
 function GetMovieInfo(){
   GetId();
   GetUser();

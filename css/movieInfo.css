@@ -244,3 +244,9 @@ p strong {
   background-color: #0056b3;
 }
 
+.star {
+  cursor: pointer;
+  font-size: 2em;
+}
+
+
