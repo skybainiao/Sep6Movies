@@ -32,17 +32,14 @@ let htmlRating = document.getElementById('rating');
 let htmlVotes = document.getElementById('votes');
 let htmlImg = document.getElementById('image');
 
-let user = document.getElementById('lg');
-user.onclick=()=>checkProfile();
+let user1 = document.getElementById('lg');
+user1.onclick=()=>checkProfile();
 let username1 = localStorage.getItem('username');
 
-window.onload=function (){
-  changeStatus();
-}
 
 
 function changeStatus(){
-  user.innerHTML=username1;
+  user1.innerHTML=username1;
 }
 
 function checkProfile(){
@@ -81,6 +78,7 @@ function GetMovieInfo(){
       GetRating(); //rating,votes
       GetDirector();
       GetComment();
+      changeStatus();
     }
   }
 }
