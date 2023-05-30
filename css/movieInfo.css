@@ -186,3 +186,61 @@ p strong {
 .input-group {
   flex: 1;
 }
+
+
+
+.comments-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tip2-icon {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.comments {
+  width: 100%;
+}
+
+.comment {
+  margin-bottom: 15px;
+}
+
+.comment p {
+  margin: 0;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.submit-comment {
+  width: 100%;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.comment-submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-submit-btn:hover {
+  background-color: #0056b3;
+}
+
