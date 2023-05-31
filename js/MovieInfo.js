@@ -20,6 +20,8 @@ var userId = 0;
 var username = '';
 var AddCommentUri = 'http://sep-db-386814.ew.r.appspot.com/comment/add/one';
 
+var addListUri = 'http://sep-db-386814.ew.r.appspot.com/user/movieList/addToMovie?userId=';
+
 var actors = '';
 
 let htmlTitle = document.getElementById('title');
@@ -289,3 +291,24 @@ function GetUser()
   }
 }
 
+function AddMovieFromList()
+{
+  const Json =
+    [
+      movieId
+    ]
+
+  const xhr = new XMLHttpRequest(); // 新建一个XMLHttpRequest对象
+  xhr.open('POST', `${addListUri}${userId}`, true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  xhr.send(JSON.stringify(Json))
+  xhr.onreadystatechange = () => {
+    //获取响应内容
+    if(xhr.readyState === 4 && /^20\d$/.test(xhr.status)){
+      console.log(xhr.responseText)
+
+    }
+  }
+}
