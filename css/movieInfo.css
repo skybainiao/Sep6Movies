@@ -244,9 +244,15 @@ p strong {
   background-color: #0056b3;
 }
 
+.rating-container {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
 .star {
   cursor: pointer;
-  font-size: 2em;
+  font-size: 3em;
 }
 
 
