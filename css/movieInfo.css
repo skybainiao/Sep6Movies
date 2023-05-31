@@ -240,7 +240,24 @@ p strong {
   cursor: pointer;
 }
 
+
 .comment-submit-btn:hover {
+  background-color: #0056b3;
+}
+
+
+#add{
+  display: block;
+  width: 30%;
+  padding: 10px;
+  background-color: lightgrey;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#add:hover {
   background-color: #0056b3;
 }
 
